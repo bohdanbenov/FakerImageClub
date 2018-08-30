@@ -1,1 +1,9 @@
-<h1>Hello world form new</h1>
+<h1><center>On this page you can add your picture to database</center></h1>
+
+<center>
+<%= form_tag("/favourites", method: "post") do %>
+  <%= label_tag(:q, "Image URL: ") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Add...") %>
+<% end %>
+</center>
