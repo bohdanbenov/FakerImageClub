@@ -21,7 +21,21 @@ class FavouritesController < ApplicationController
   end
 
   def new
+    image_url = params['q']
+    puts "Your image URL: #{image_url}"
+  end
 
+  def create
+    @image = Image.new(url:params['q'])
+    respond_to do |format|
+      if @image.save
+        format.html { redirect_to "/favourites", notice: 'Comment was successfully created.' }
+        format.json { render json: @image, status: :created, location: @image }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @image.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
